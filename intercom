@@ -1,0 +1,196 @@
+Delivered-To: remi@kactus.com
+Received: by 2002:a05:6a11:4b86:0:0:0:0 with SMTP id of6csp964654pxb;
+        Thu, 25 Nov 2021 09:54:33 -0800 (PST)
+X-Received: by 2002:a1c:4d0b:: with SMTP id o11mr9544946wmh.68.1637862872886;
+        Thu, 25 Nov 2021 09:54:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1637862872; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vPFzv+yLV2x+ex5IhUYeTpVaxABuPs4Ub6s2vSRCfmI1oc+ZUwYqkeTRJu2yOd3yJG
+         AoXfB18/70YJP9ZRc6FnGWJIlAgk04AW0AC0yFR1r2BFRolFPdDzC3hYsZ+yu8Uvu6yB
+         LcQNbNlEPyaPwRhPgzkw5Ll8DDOSEamIGr6zbUQLdsShPEJBu0mHoMhQFwdxDFOtIaaL
+         95cuV0qkvkZanaN47ARlYtT+ck1HdL8pzBMbiMfR+5dw8IBFJObFf82FvTDXIuFyUJOK
+         KbBO0j4xVqGlodyy7j7eoE1AaxgzQgarprzsvwx8zFiw2kwmvuxbjUPWMMA5922HjW3u
+         YnWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:date:message-id:subject:references:in-reply-to
+         :reply-to:to:from:dkim-signature;
+        bh=asMKpAcXVghPhFOIhhf7d/btfBn4zkyJVrg6QPkmPLs=;
+        b=Ri8+Wdly0GDRJmeqEXWs3xhJXHoeFk0FPFia7VGGnVEtcF1o6cTeJ4Y/CAP6oWsWAy
+         Ynfbav8EbfMIxeCUg+MuLIWKi8vSw2OT0IVnQTChPf+y0MShtRS8xDf4J5pZJb5Ng9Ng
+         dQvC/FR8gs5dInip4qCAzfkIRSphMSKD3YGNzopXR0MdrdhlL7u6YuYiaPlnvkt5jHAR
+         3OHcNuKTmEdguJ/FV26RMVOAZ3MFyFVrocWxBCZlP35cCP5up11i7ZfK3Q9V4Rih/C7S
+         ufmAgk+VQS+O3efOoxeaRSScxX9JdguzfqPDvQ7u/M2tzgDgYs1Q8ObINYmQgWLdCsJY
+         +zKA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kactus-com.20210112.gappssmtp.com header.s=20210112 header.b=5rMdAH48;
+       spf=pass (google.com: domain of martin.londe@kactus.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=martin.londe@kactus.com
+Return-Path: <martin.londe@kactus.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id p17sor2814958wrf.4.2021.11.25.09.54.32
+        for <remi@kactus.com>
+        (Google Transport Security);
+        Thu, 25 Nov 2021 09:54:32 -0800 (PST)
+Received-SPF: pass (google.com: domain of martin.londe@kactus.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kactus-com.20210112.gappssmtp.com header.s=20210112 header.b=5rMdAH48;
+       spf=pass (google.com: domain of martin.londe@kactus.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=martin.londe@kactus.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kactus-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:reply-to:in-reply-to:references:subject:message-id:date
+         :mime-version;
+        bh=asMKpAcXVghPhFOIhhf7d/btfBn4zkyJVrg6QPkmPLs=;
+        b=5rMdAH48XZP4hMA2sFN8BYIm5euWAvLmTKJA+vXBe9k9djTQmgcEeHBNzLkZrZoTr0
+         7MjEcl3qzn8WRJGJRLcMFD/e0e7/b+QD5VtwahpEpoNb3XgoAtoH80W4qTr9JTWq3ABj
+         8IElSrMTUEUALJgCMSeH6iIqDKaeq7kShf16BajCQSRppS44gEcuPJvHKuWS8kzIq/OP
+         gzQpJP56S1OaOOKvFGHOBjspp15kASxfP1uiU2PU/DQoddEqj7wMZB08tAz1VPXFIQi/
+         f5L3BxlPIrqeGCsUYYbhnR2RuRVyxiokxIqbZ2T9THRIUY3Nqtyit9bSjFVklcORiGAJ
+         8oYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:reply-to:in-reply-to:references:subject
+         :message-id:date:mime-version;
+        bh=asMKpAcXVghPhFOIhhf7d/btfBn4zkyJVrg6QPkmPLs=;
+        b=WirMBZbc6yl+obM6xft4Rd0TYlOm4H+30S8JTP8lUmxsVGUHjyK17s3mOgN4Loyv/D
+         g2+O67pURS8dF+fR7n/BfV9B4CS3lcCZLsvhUYjoqkktmvdrTVW3lWbDDyhqlo3NO2Fm
+         s5LKNLF41FJDnuQRBEot3WzvpPVLfvJsdUVBHCJeTzR6mXQkaDly1jvwJj9AzAb9db8P
+         ekSxY2nWrN+/pTykTcF2//IkGJuMyUzpIe7xI5dVzkCqcsQuQCQZ1NR1EvoVYqMfO7+5
+         0EwJHl0dzuB3ZXL7+8lK/Y0okJasmPtSJw8x++HRn9gt7t2JVyJUSFXk7ehHo8gNYZyt
+         mjUQ==
+X-Gm-Message-State: AOAM533Pxze7vI+DXy0gqzuSvp4ftHDwgmUZ1LpYgRv06n84W2WLkgIO 6nEoHq+1kfV9x/h7RkteM85SXgHK/oonuTL6
+X-Google-Smtp-Source: ABdhPJwgFJFzLAiN6yqdOX6q2hEIrifxAuEHKjN++yQyCYFiheHCOfSqA9leIPuiOBX3W0y+u6LCZw==
+X-Received: by 2002:a5d:6111:: with SMTP id v17mr8870516wrt.512.1637862872168;
+        Thu, 25 Nov 2021 09:54:32 -0800 (PST)
+Return-Path: <martin.londe@kactus.com>
+Received: from out.frontapp.com (out-eu-west-1-1.frontapp.com. [34.249.161.128])
+        by smtp.gmail.com with ESMTPSA id t127sm9095645wma.9.2021.11.25.09.54.31
+        for <remi@kactus.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Nov 2021 09:54:31 -0800 (PST)
+Content-Type: multipart/alternative; boundary="----sinikael-?=_1-16378628715640.40028473720483193"
+X-Front-ID: f30b2bfb179c629785b09a05b60df31b@frontapp.com
+From: Martin Londe <martin.londe@kactus.com>
+To: remi@kactus.com
+Reply-To: martin.londe@kactus.com
+In-Reply-To: <6a49ea8d80c44c9bb2dcf5de7e7a8ee3@frontapp.com>
+References: <6a49ea8d80c44c9bb2dcf5de7e7a8ee3@frontapp.com> <CAO3DZRKqaaMteJ+cjm52hdiP+waK37NxDRYfu2Ax6xWZVjzDWg@mail.gmail.com> <CA+WXye0-zf=KSsXYoSFXWZMhS1HEe-vbjyVpXcTtOqsVMeoD1Q@mail.gmail.com> <f30b2bfb179c629785b09a05b60df31b@frontapp.com>
+Subject: Fw: Pass navigo
+Message-ID: <f30b2bfb179c629785b09a05b60df31b@frontapp.com>
+X-Mailer: Front (1.0; +https://frontapp.com; +msgid=f30b2bfb179c629785b09a05b60df31b@frontapp.com)
+Date: Thu, 25 Nov 2021 17:54:31 +0000
+MIME-Version: 1.0
+
+------sinikael-?=_1-16378628715640.40028473720483193
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello R=C3=A9mi
+
+
+Mail que j'ai envoy=C3=A9 =C3=A0 Marion & co et que seule Oumaima semble av=
+oir re=C3=A7u.
+A dispo pour en parler si necessaire
+
+
+Martin
+
+=E2=80=94
+Martin Londe=20
+Directeur Administratif & Financier @Kactus=20
+E: martin.londe@kactus.com=20
+M: 07 56 79 97 11=20
+W: www.kactus.com=20
+
+----------- Forwarded message -----------
+From: martin.londe@kactus.com
+Date: November 22, 2021, 1:40 PM GMT+1
+Subject: Pass navigo
+
+
+Bonjour =C3=A0 tous,
+
+
+
+Je vais passer en fin de semaine la paie de novembre, pouvez vous, si vous =
+=C3=AAtes concern=C3=A9, m'envoyer par retour de mail un justificatif (mens=
+uel ou annuel) de votre pass navigo du mois de novembre.
+
+
+
+Merci d'avance,
+
+
+
+Martin=20
+
+
+=E2=80=94
+Martin Londe=20
+Directeur Administratif & Financier @Kactus=20
+E: martin.londe@kactus.com=20
+M: 07 56 79 97 11=20
+W: www.kactus.com=20
+------sinikael-?=_1-16378628715640.40028473720483193
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!--[if (gte mso 9)|(IE)]><style type=3D"text/css">.main-style-74975d23a3d6=
+a0f934d3 { font-family: sans-serif; font-size: 11pt; /* inherit */ }</style=
+><![endif]--><div style=3D"/* inherit */" class=3D"main-style-74975d23a3d6a=
+0f934d3"><div>Hello R=C3=A9mi</div><div><br /></div><div>Mail que j'ai envo=
+y=C3=A9 =C3=A0 Marion &amp; co et que seule Oumaima semble avoir re=C3=A7u.=
+</div><div>A dispo pour en parler si necessaire</div><div><br /></div><div>=
+Martin</div><br><div class=3D"front-signature"><div>=E2=80=94</div><table s=
+tyle=3D"font-size: small; padding-top: 20px;" cellspacing=3D"0" cellpadding=
+=3D"0"><tbody><tr><td style=3D"font-family: Tahoma, sans-serif; margin: 0px=
+; font-size: 14px; font-weight: bold; padding-top: 5px">Martin Londe</td></=
+tr><tr><td style=3D"font-family: Tahoma, sans-serif; margin: 0px; font-size=
+: 14px; font-weight: bold; color: rgb(143, 143, 143)">Directeur Administrat=
+if &amp; Financier @Kactus&nbsp; &nbsp; &nbsp;</td></tr><tr><td style=3D"fo=
+nt-family: Tahoma, sans-serif; margin: 0px; font-size: 12px; padding-top: 5=
+px"><span style=3D"color: rgb(143, 143, 143)">E: </span><a style=3D"color: =
+rgb(53, 153, 55)" rel=3D"noopener noreferrer" href=3D"mailto:anne-sara@kact=
+us.com" target=3D"_blank">martin.londe@kactus.com</a></td></tr><tr><td styl=
+e=3D"font-family: Tahoma, sans-serif; margin: 0px; font-size: 12px; padding=
+-top: 3px"><span style=3D"color: rgb(143, 143, 143)">M:&nbsp;</span><a rel=
+=3D"noopener noreferrer" href=3D"tel:0756799711" style=3D"color: rgb(53, 15=
+3, 55);" target=3D"_blank">07 56 79 97 11</a>&nbsp;</td></tr><tr><td style=
+=3D"font-family: Tahoma, sans-serif; margin: 0px; font-size: 12px; padding-=
+top: 3px"><span style=3D"color: rgb(143, 143, 143)">W:&nbsp;</span><a style=
+=3D"color: rgb(53, 153, 55)" data-saferedirecturl=3D"https://www.google.com=
+/url?q=3Dhttps://www.kactus.com/&amp;source=3Dgmail&amp;ust=3D1554219376935=
+000&amp;usg=3DAFQjCNHb2MtCHgHaeayzRrp1etaQHy9XYw" rel=3D"noopener noreferre=
+r" href=3D"https://www.kactus.com/" target=3D"_blank">www.kactus.com</a></t=
+d></tr></tbody></table></div></div><img src=3D"https://app.frontapp.com/api=
+/1/noauth/companies/kactus/seen/msg_c065uh0/han_c3rdu2/fadb5cb5.gif" alt=3D=
+"Sent from Front" aria-hidden=3D"true" style=3D"width: 1px; height: 1px"><b=
+r>----------- Forwarded message -----------<br />From: <a href=3D"mailto:ma=
+rtin.londe@kactus.com" target=3D"_blank" rel=3D"noopener noreferrer">martin=
+.londe@kactus.com</a><br />Date: November 22, 2021, 1:40 PM GMT+1<br />Subj=
+ect: Pass navigo<br /><br /><div id=3D"fae_c065uh0-qd19jf"><div>Bonjour =C3=
+=A0 tous,</div><div><br /></div><div>Je vais passer en fin de semaine la pa=
+ie de novembre, pouvez vous, si vous =C3=AAtes concern=C3=A9, m'envoyer par=
+ retour de mail un justificatif (mensuel ou annuel) de votre pass navigo du=
+ mois de novembre.</div><div><br /></div><div>Merci d'avance,</div><div><br=
+ /></div><div>Martin&nbsp;</div><br /><div class=3D"front-signature"><div>=
+=E2=80=94</div><table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-siz=
+e: small; padding-top: 20px;"><tbody><tr><td style=3D"font-family: Tahoma, =
+sans-serif; margin: 0px; font-size: 14px; font-weight: bold; padding-top: 5=
+px">Martin Londe</td></tr><tr><td style=3D"font-family: Tahoma, sans-serif;=
+ margin: 0px; font-size: 14px; font-weight: bold; color: rgb(143, 143, 143)=
+">Directeur Administratif &amp; Financier @Kactus&nbsp; &nbsp; &nbsp;</td><=
+/tr><tr><td style=3D"font-family: Tahoma, sans-serif; margin: 0px; font-siz=
+e: 12px; padding-top: 5px"><span style=3D"color: rgb(143, 143, 143)">E: </s=
+pan><a href=3D"mailto:anne-sara@kactus.com" rel=3D"noopener noreferrer" sty=
+le=3D"color: rgb(53, 153, 55)" target=3D"_blank">martin.londe@kactus.com</a=
+></td></tr><tr><td style=3D"font-family: Tahoma, sans-serif; margin: 0px; f=
+ont-size: 12px; padding-top: 3px"><span style=3D"color: rgb(143, 143, 143)"=
+>M:&nbsp;</span><a style=3D"color: rgb(53, 153, 55);" href=3D"tel:075679971=
+1" rel=3D"noopener noreferrer" target=3D"_blank">07 56 79 97 11</a>&nbsp;</=
+td></tr><tr><td style=3D"font-family: Tahoma, sans-serif; margin: 0px; font=
+-size: 12px; padding-top: 3px"><span style=3D"color: rgb(143, 143, 143)">W:=
+&nbsp;</span><a href=3D"https://www.kactus.com/" rel=3D"noopener noreferrer=
+" data-saferedirecturl=3D"https://www.google.com/url?q=3Dhttps://www.kactus=
+.com/&amp;source=3Dgmail&amp;ust=3D1554219376935000&amp;usg=3DAFQjCNHb2MtCH=
+gHaeayzRrp1etaQHy9XYw" style=3D"color: rgb(53, 153, 55)" target=3D"_blank">=
+www.kactus.com</a></td></tr></tbody></table></div></div>
+------sinikael-?=_1-16378628715640.40028473720483193--
